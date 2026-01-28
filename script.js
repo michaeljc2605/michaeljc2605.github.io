@@ -281,6 +281,14 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
+        // Get submit button
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.innerHTML = '<span>Sending...</span>';
+        submitBtn.disabled = true;
+        
         // Get form data
         const formData = {
             name: document.getElementById('name').value,
@@ -291,23 +299,26 @@ if (contactForm) {
         
         console.log('Form submitted:', formData);
         
-        // Show success message (you can customize this)
-        alert('Thank you for your message! I will get back to you soon.');
-        
-        // Reset form
-        contactForm.reset();
-        
-        // TODO: Integrate with your backend or email service
-        // Example using EmailJS:
-        // emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
-        //     .then(() => {
-        //         alert('Message sent successfully!');
-        //         contactForm.reset();
-        //     })
-        //     .catch((error) => {
-        //         alert('Failed to send message. Please try again.');
-        //         console.error('Error:', error);
-        //     });
+        // Send email using EmailJS FIRST
+        emailjs.send("service_s1vcnwr", "template_hx9x09u", formData)
+            .then((response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                // ONLY show success message AFTER email is sent
+                alert('Message sent successfully! I will get back to you soon.');
+                contactForm.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            })
+            .catch((error) => {
+                console.error('FAILED...', error);
+                alert('Failed to send message. Please try again.');
+                
+                // Reset button
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            });
     });
 }
 
