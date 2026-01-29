@@ -492,13 +492,13 @@ window.addEventListener('scroll', debounce(() => {
 // ===========================
 function preloadImages() {
     const images = [
-        'YOUR_IMAGE_URL_HERE.jpg',
-        'COMPANY_1_LOGO.png',
-        'COMPANY_2_LOGO.png',
-        'COMPANY_3_LOGO.png',
-        'PROJECT_1_IMAGE.jpg',
-        'PROJECT_2_IMAGE.jpg',
-        'PROJECT_3_IMAGE.jpg'
+        '/Static/Profile.JPG',
+        '/Static/sbm-logo.png',
+        '/Static/a4c-logo.png',
+        '/Static/keyi-logo.png',
+        '/Static/project1.png',
+        '/Static/project2.png',
+        '/Static/project3.png'
     ];
     
     images.forEach(src => {
@@ -518,4 +518,9 @@ window.addEventListener('beforeprint', () => {
 
 window.addEventListener('afterprint', () => {
     document.body.classList.remove('printing');
+});
+
+document.querySelector('.project-link').addEventListener('click', function(event) {
+  event.preventDefault();
+  alert('Sorry, This project is in progress ;)');
 });
