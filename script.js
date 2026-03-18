@@ -524,3 +524,15 @@ document.querySelector('.project-link').addEventListener('click', function(event
   event.preventDefault();
   alert('Sorry, This project is in progress ;)');
 });
+
+// Unity3D game - PC only warning
+const unityLinks = document.querySelectorAll('.unity-game-link');
+unityLinks.forEach(link => {
+  link.addEventListener('click', function(event) {
+    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) || window.innerWidth < 1024;
+    if (isMobile) {
+      event.preventDefault();
+      alert('⚠️ This game is designed for PC/Laptop only.\nPlease visit on a desktop browser for the best experience!');
+    }
+  });
+});
