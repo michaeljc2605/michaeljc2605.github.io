@@ -520,7 +520,7 @@ window.addEventListener('afterprint', () => {
     document.body.classList.remove('printing');
 });
 
-document.querySelector('.project-link').addEventListener('click', function(event) {
+document.querySelector('.project-card:nth-child(2) .project-link').addEventListener('click', function(event) {
   event.preventDefault();
   alert('Sorry, This project is in progress ;)');
 });
