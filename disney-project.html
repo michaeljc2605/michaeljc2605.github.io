@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disney One Castle. Many Realms. HTML design project case study by Michael Joseph Candra.">
+    <title>HTML Design Project — Disney | Michael</title>
+    <link rel="stylesheet" href="disney-project.css">
+</head>
+<body>
+    <header class="case-header">
+        <a class="case-brand" href="index.html">MJC.</a>
+        <a class="back-link" href="index.html#projects">← Back to featured projects</a>
+    </header>
+
+    <main class="case-main">
+        <section class="case-hero" aria-labelledby="project-title">
+            <div class="hero-copy">
+                <p class="eyebrow">HTML Design Project / Disney</p>
+                <h1 id="project-title">One Castle.<br><em>Many Realms.</em></h1>
+                <p>
+                    An independent homepage concept for a more immersive Disney experience. The visual direction moves from enchanted meadow to ocean, hero city, desert, frozen world, and galaxy as one continuous journey.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="http://localhost:5176/" target="_blank" rel="noopener noreferrer">Open HTML demo ↗</a>
+                    <a class="btn btn-secondary" href="#moodboard">View moodboard ↓</a>
+                </div>
+                <div class="hero-meta" aria-label="Project details">
+                    <div class="meta-item"><span>Role</span><strong>Art direction / UX / UI</strong></div>
+                    <div class="meta-item"><span>Built with</span><strong>HTML / CSS / React</strong></div>
+                    <div class="meta-item"><span>Year</span><strong>2026</strong></div>
+                </div>
+            </div>
+
+            <figure class="preview-shell">
+                <picture>
+                    <source srcset="Static/disney-project-preview.webp" type="image/webp">
+                    <img src="Static/disney-project-preview.png" alt="Preview of the Disney One Castle. Many Realms. homepage concept">
+                </picture>
+                <figcaption>Working visual prototype / current preview</figcaption>
+            </figure>
+        </section>
+
+        <section class="case-section" id="materials" aria-labelledby="materials-title">
+            <p class="section-kicker">Project materials</p>
+            <h2 id="materials-title">The idea, the artwork, and the working build.</h2>
+            <p class="section-intro">
+                Everything is connected here: the current moodboard, the editable Photoshop direction, the lightweight preview image, and the live HTML prototype.
+            </p>
+
+            <div class="asset-grid">
+                <a class="asset-card" href="#moodboard">
+                    <span class="asset-type">Reference / PDF</span>
+                    <div><h3>Moodboard</h3><p>See the original visual direction and realm palette.</p></div>
+                    <span class="asset-arrow" aria-hidden="true">↘</span>
+                </a>
+                <a class="asset-card" href="DISNEY%20HTML%20ONLY%20THEMED/Disney%20Scroll%20Portfolio%20Template.psd" download>
+                    <span class="asset-type">Source / PSD</span>
+                    <div><h3>Photoshop file</h3><p>Download the layered scroll portfolio artwork.</p></div>
+                    <span class="asset-arrow" aria-hidden="true">↓</span>
+                </a>
+                <a class="asset-card" href="Static/disney-project-preview.webp" download>
+                    <span class="asset-type">Preview / WebP</span>
+                    <div><h3>Site preview</h3><p>Download the current browser preview image.</p></div>
+                    <span class="asset-arrow" aria-hidden="true">↓</span>
+                </a>
+            </div>
+            <div class="asset-actions">
+                <a class="btn btn-secondary" href="Static/disney-project-preview.png" download>Download PNG preview ↓</a>
+            </div>
+        </section>
+
+        <section class="case-section" id="moodboard" aria-labelledby="moodboard-title">
+            <p class="section-kicker">01 / Visual direction</p>
+            <h2 id="moodboard-title">Moodboard: a continuous journey through wonder.</h2>
+            <p class="section-intro">
+                This is the existing moodboard you created for the project, embedded directly so it stays part of the case study instead of becoming a detached file.
+            </p>
+            <div class="moodboard-panel">
+                <object data="DISNEY%20HTML%20ONLY%20THEMED/documentation/disney-multi-realm-website-moodboard.pdf" type="application/pdf" aria-label="Disney multi-realm website moodboard">
+                    <p class="moodboard-fallback">Your browser cannot embed the PDF. <a class="back-link" href="DISNEY%20HTML%20ONLY%20THEMED/documentation/disney-multi-realm-website-moodboard.pdf" target="_blank" rel="noopener noreferrer">Open the moodboard PDF</a>.</p>
+                </object>
+            </div>
+            <div class="asset-actions">
+                <a class="btn btn-secondary" href="DISNEY%20HTML%20ONLY%20THEMED/documentation/disney-multi-realm-website-moodboard.pdf" target="_blank" rel="noopener noreferrer">Open PDF in a new tab ↗</a>
+            </div>
+        </section>
+
+        <section class="case-section demo-section" id="html-demo" aria-labelledby="demo-title">
+            <p class="section-kicker">02 / Working HTML prototype</p>
+            <h2 id="demo-title">The moodboard becomes an interactive homepage.</h2>
+            <p class="section-intro">
+                The frame below loads the actual Disney app from this workspace. Scroll through the six realms, open the finder, toggle sound and FX, or use the separate demo button for a larger view.
+            </p>
+            <div class="demo-frame">
+                <iframe src="http://localhost:5176/" title="Disney One Castle. Many Realms. HTML prototype" loading="lazy"></iframe>
+            </div>
+            <p class="demo-note">For localhost: run <code>bash start-local.sh</code>, then open <code>http://localhost:4173/</code>.</p>
+        </section>
+    </main>
+
+    <footer class="case-footer case-main">
+        <span>HTML Design Project — Disney</span>
+        <a class="back-link" href="index.html#projects">Return to portfolio ↑</a>
+    </footer>
+</body>
+</html>

@@ -15,6 +15,14 @@
     --text-primary: #ffffff;
     --text-secondary: #b8c1ec;
     --text-muted: #6b7aa1;
+    --evo-text-main: #f5e8cf;
+    --evo-text-accent: #f4b84a;
+    --evo-text-muted: #e1c9a2;
+    --evo-border: #f4b84a;
+    --evo-cursor: #f4b84a;
+    --evo-bg-left: #33251b;
+    --evo-bg-mid: #8c5f3a;
+    --evo-bg-right: #c7a574;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -81,16 +89,17 @@ ul {
 .cursor-dot {
     width: 8px;
     height: 8px;
-    background: var(--primary);
-    box-shadow: 0 0 20px var(--primary);
+    background: var(--evo-cursor, var(--primary));
+    box-shadow: 0 0 20px var(--evo-cursor, var(--primary));
+    transition: width 0.3s, height 0.3s, opacity 0.3s, background-color 0.4s, box-shadow 0.4s;
 }
 
 .cursor-outline {
     width: 40px;
     height: 40px;
-    border: 2px solid var(--primary);
+    border: 2px solid var(--evo-cursor, var(--primary));
     opacity: 0.5;
-    transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out, border-color 0.4s ease;
 }
 
 /* ===========================
@@ -301,6 +310,15 @@ ul {
     overflow: hidden;
 }
 
+.evolution-hero {
+    min-height: 100vh;
+    display: block;
+    overflow: visible;
+    overflow-x: clip;
+    padding: 0 40px;
+    background: #17120f;
+}
+
 .hero-background {
     position: absolute;
     top: 0;
@@ -308,6 +326,218 @@ ul {
     width: 100%;
     height: 100%;
     z-index: 0;
+}
+
+.evolution-background {
+    --evo-progress: 0;
+    --evo-bg-left: #33251b;
+    --evo-bg-mid: #8c5f3a;
+    --evo-bg-right: #c7a574;
+    --evo-glow: rgba(244, 184, 74, 0.18);
+    --evo-text-main: #f5e8cf;
+    --evo-text-accent: #f4b84a;
+    --evo-text-muted: #e1c9a2;
+    --evo-warm: 1;
+    --evo-clean: 0;
+    --evo-neon: 0;
+    --evo-space: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    margin-bottom: 0;
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 18% 55%, var(--evo-glow), transparent 32%),
+        radial-gradient(circle at 82% 40%, rgba(255, 255, 255, 0.08), transparent 34%),
+        linear-gradient(110deg, var(--evo-bg-left) 0%, var(--evo-bg-mid) 52%, var(--evo-bg-right) 100%);
+    transition: background 0.3s ease;
+}
+
+.evolution-atmosphere,
+.evolution-factory,
+.evolution-grid,
+.evolution-galaxy,
+.evolution-vignette,
+.evolution-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.evolution-atmosphere {
+    z-index: -4;
+    opacity: calc(1 * var(--evo-warm) + 0.18 * var(--evo-clean));
+    background:
+        radial-gradient(ellipse at 18% 72%, rgba(20, 15, 12, 0.9) 0%, transparent 42%),
+        radial-gradient(ellipse at 42% 24%, rgba(255, 177, 76, 0.22), transparent 30%),
+        repeating-linear-gradient(115deg, rgba(255, 226, 169, 0.025) 0 1px, transparent 1px 7px);
+    filter: sepia(calc(0.9 * var(--evo-warm))) blur(calc(1px * var(--evo-warm)));
+    transform: translateY(calc(var(--evo-progress) * -3%));
+}
+
+.evolution-factory {
+    z-index: -3;
+    opacity: calc(0.82 * var(--evo-warm) + 0.26 * var(--evo-clean));
+    background:
+        linear-gradient(to top, rgba(10, 10, 12, 0.78), transparent 55%),
+        repeating-linear-gradient(90deg, transparent 0 8%, rgba(16, 12, 10, 0.48) 8.1% 8.5%, transparent 8.6% 14%),
+        linear-gradient(180deg, transparent 0 56%, rgba(38, 24, 16, 0.75) 56% 100%);
+    clip-path: polygon(0 62%, 8% 53%, 14% 58%, 20% 44%, 28% 55%, 35% 48%, 43% 57%, 50% 42%, 57% 55%, 64% 48%, 72% 58%, 80% 45%, 88% 56%, 100% 48%, 100% 100%, 0 100%);
+    transform: translateY(calc(var(--evo-progress) * 12%));
+}
+
+.evolution-grid {
+    z-index: -2;
+    opacity: calc(0.08 + 0.3 * var(--evo-clean) + 0.22 * var(--evo-neon));
+    background-image:
+        linear-gradient(rgba(149, 222, 255, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(149, 222, 255, 0.4) 1px, transparent 1px);
+    background-size: clamp(28px, 4vw, 62px) clamp(28px, 4vw, 62px);
+    transform: perspective(600px) rotateX(62deg) translateY(calc(20% - var(--evo-progress) * 30%)) scale(1.6);
+    transform-origin: center bottom;
+    mask-image: linear-gradient(to top, black 0%, transparent 72%);
+}
+
+.evolution-galaxy {
+    z-index: -1;
+    opacity: calc(0.05 + 0.85 * var(--evo-space));
+    background:
+        radial-gradient(ellipse at 78% 42%, rgba(77, 230, 255, 0.5), transparent 18%),
+        radial-gradient(ellipse at 68% 62%, rgba(151, 65, 255, 0.46), transparent 26%),
+        radial-gradient(circle at 88% 22%, rgba(231, 95, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 18%, rgba(101, 224, 255, 0.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 48% 32%, rgba(255, 255, 255, 0.65) 0 1px, transparent 2px);
+    background-size: auto, auto, 170px 170px, 230px 230px, 190px 190px;
+    transform: translate3d(calc(var(--evo-progress) * -3%), calc(var(--evo-progress) * -5%), 0) scale(calc(1 + var(--evo-space) * 0.08));
+}
+
+.evolution-canvas {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(var(--evo-pointer-x, 0px), var(--evo-pointer-y, 0px), 0);
+}
+
+.evolution-vignette {
+    z-index: 1;
+    background:
+        linear-gradient(90deg, rgba(5, 8, 14, 0.58), transparent 30%, transparent 70%, rgba(5, 8, 14, 0.52)),
+        linear-gradient(180deg, rgba(5, 7, 13, 0.42), transparent 22%, transparent 76%, rgba(5, 7, 13, 0.68));
+}
+
+.evolution-progress {
+    position: absolute;
+    z-index: 2;
+    right: clamp(20px, 4vw, 64px);
+    bottom: 34px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(238, 243, 255, 0.75);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+}
+
+.evolution-progress-stage {
+    display: none;
+}
+
+.evolution-progress-line {
+    position: relative;
+    width: clamp(60px, 10vw, 150px);
+    height: 2px;
+    overflow: hidden;
+    background: rgba(238, 243, 255, 0.24);
+}
+
+.evolution-progress-line span {
+    display: block;
+    width: var(--evo-progress-percent, 0%);
+    height: 100%;
+    background: linear-gradient(90deg, #f4b84a, #45e8e5, #d34bff);
+    transition: width 0.12s linear;
+}
+
+.evolution-hero > .hero-content {
+    position: relative;
+    z-index: 3;
+    min-height: 100vh;
+    padding: 100px 0 60px;
+}
+
+.hero-visual-composition {
+    position: relative;
+    min-height: 460px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-visual-composition .hero-image-container {
+    z-index: 2;
+}
+
+.hero-visual-composition .image-frame {
+    max-width: 480px;
+}
+
+@media (max-width: 768px) {
+    .evolution-hero {
+        min-height: 100vh;
+        padding: 0 20px;
+    }
+
+    .evolution-hero > .hero-content {
+        min-height: 100vh;
+        padding: 90px 0 40px;
+    }
+
+    .evolution-progress {
+        right: 20px;
+        bottom: 22px;
+    }
+
+    .evolution-progress-label:first-child {
+        display: none;
+    }
+
+    .evolution-progress-line {
+        width: 72px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .evolution-hero {
+        min-height: 100vh;
+    }
+
+    .evolution-background,
+    .evolution-grid,
+    .evolution-galaxy,
+    .evolution-progress-line span {
+        transition: none;
+    }
+
+    .evolution-canvas {
+        transform: none;
+    }
+}
+
+/* The evolving industrial world remains visible behind every portfolio section. */
+body > section:not(.evolution-hero),
+body > footer {
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 14, 39, 0.78);
+}
+
+body > section:nth-of-type(3),
+body > section:nth-of-type(5) {
+    background: rgba(21, 25, 50, 0.72);
 }
 
 .grid-overlay {
@@ -473,6 +703,145 @@ ul {
     animation: fadeInUp 1s ease-out 0.8s both;
 }
 
+.hero-industrial-visual {
+    position: relative;
+    min-height: 460px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 145, 0.28);
+    background:
+        linear-gradient(135deg, rgba(23, 17, 13, 0.28), transparent 52%),
+        repeating-linear-gradient(0deg, transparent 0 38px, rgba(238, 220, 180, 0.08) 39px 40px),
+        repeating-linear-gradient(90deg, transparent 0 38px, rgba(238, 220, 180, 0.08) 39px 40px);
+    box-shadow: inset 0 0 80px rgba(20, 12, 7, 0.6), 0 25px 90px rgba(8, 7, 9, 0.42);
+    animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.hero-industrial-visual::before,
+.hero-industrial-visual::after {
+    content: '';
+    position: absolute;
+    width: 72%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(246, 190, 98, 0.35);
+    border-radius: 50%;
+}
+
+.hero-industrial-visual::before {
+    transform: rotate(28deg) scaleY(0.34);
+    box-shadow: 0 0 0 28px rgba(246, 190, 98, 0.06), 0 0 0 56px rgba(246, 190, 98, 0.04);
+}
+
+.hero-industrial-visual::after {
+    width: 38%;
+    border-color: rgba(132, 207, 255, 0.45);
+    transform: rotate(-18deg) scaleY(0.34);
+}
+
+.industrial-orbit {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f4b84a;
+    box-shadow: 0 0 24px rgba(244, 184, 74, 0.86);
+}
+
+.orbit-a { transform: translate(180px, -100px); }
+.orbit-b { transform: translate(-150px, 130px); background: #c87535; }
+
+.industrial-visual-copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 16px;
+    text-align: center;
+    color: var(--evo-text-main);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+}
+
+.industrial-visual-copy span,
+.industrial-visual-copy small {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+}
+
+.industrial-visual-copy strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(82px, 10vw, 150px);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--evo-text-accent);
+}
+
+.industrial-visual-copy strong i {
+    color: var(--evo-text-muted);
+    font-style: normal;
+}
+
+.industrial-visual-copy small { color: color-mix(in srgb, var(--evo-text-muted) 68%, transparent); }
+
+.evolution-hero .hero-title {
+    background: linear-gradient(135deg, var(--evo-text-main), var(--evo-text-accent), var(--evo-text-muted));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.evolution-hero .subtitle-line,
+.evolution-hero .hero-description {
+    color: var(--evo-text-muted);
+    transition: color 0.4s ease;
+}
+
+.evolution-hero .subtitle-line { color: var(--evo-text-accent); }
+
+.evolution-hero .hero-description { color: var(--evo-text-main); }
+
+.evolution-hero .btn-primary {
+    background: var(--evo-text-accent);
+    border-color: var(--evo-text-accent);
+    color: #17120f;
+}
+
+.evolution-hero .btn-secondary {
+    border-color: var(--evo-text-muted);
+    color: var(--evo-text-main);
+}
+
+.evolution-progress-stage,
+.section-number,
+.timeline-date,
+.cert-issuer,
+.footer-section h4 {
+    color: var(--evo-text-accent);
+    transition: color 0.4s ease;
+}
+
+.section-title,
+.company-name,
+.project-title,
+.contact-info h3,
+.footer-brand h3 {
+    color: var(--evo-text-main);
+    transition: color 0.4s ease;
+}
+
+.section-line,
+.about::before,
+.certifications::before {
+    background: linear-gradient(90deg, transparent, var(--evo-text-accent), transparent);
+    transition: background 0.4s ease;
+}
+
+.evolution-hero .btn-primary:hover,
+.evolution-hero .btn-secondary:hover {
+    background: var(--evo-text-main);
+    border-color: var(--evo-text-main);
+    color: #17120f;
+}
+
 .image-frame {
     position: relative;
     width: 100%;
@@ -486,9 +855,10 @@ ul {
     left: -20px;
     width: 100%;
     height: 100%;
-    border: 3px solid var(--primary);
+    border: 3px solid var(--evo-border, var(--primary));
     z-index: -1;
     animation: float 3s ease-in-out infinite;
+    transition: border-color 0.4s ease;
 }
 
 .hero-image {
@@ -811,6 +1181,16 @@ ul {
     object-fit: cover;
 }
 
+.company-logo--monee {
+    width: 142px;
+    background: #ffffff;
+}
+
+.company-logo--monee img {
+    object-fit: contain;
+    padding: 8px 10px;
+}
+
 .company-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
@@ -829,6 +1209,19 @@ ul {
     color: var(--text-secondary);
     line-height: 1.8;
     margin-bottom: 20px;
+}
+
+.job-bullets {
+    padding-left: 22px;
+}
+
+.job-bullets li {
+    padding-left: 6px;
+    margin-bottom: 10px;
+}
+
+.job-bullets li:last-child {
+    margin-bottom: 0;
 }
 
 .job-tags {
@@ -873,13 +1266,13 @@ ul {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(184, 193, 236, 0.1);
-    transition: var(--transition);
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
     animation: fadeInUp 1s ease-out;
 }
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px) !important;
     border-color: var(--primary);
-    box-shadow: 0 20px 60px rgba(0, 255, 245, 0.2);
+    box-shadow: 0 18px 46px rgba(0, 255, 245, 0.18);
 }
 .project-image {
     position: relative;
@@ -1306,6 +1699,20 @@ ul {
     .hero-image-container {
         order: -1;
     }
+
+    .hero-visual-composition {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 24px;
+    }
+
+    .hero-visual-composition .hero-image-container {
+        order: -1;
+    }
+
+    .hero-industrial-visual {
+        min-height: 300px;
+    }
     
     .hero-cta {
         justify-content: center;
@@ -1381,4 +1788,84 @@ ul {
     .cursor-outline {
         display: none;
     }
+}
+
+/* Final cascade: let the global evolution scene breathe through every page section. */
+body > section:not(.evolution-hero) {
+    background: rgba(10, 11, 18, 0.68) !important;
+}
+
+body > footer {
+    background: rgba(14, 14, 20, 0.7) !important;
+}
+
+/* The fixed header follows the same industrial stage as the page background. */
+.navbar,
+.navbar.scrolled {
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--evo-bg-left) 92%, transparent),
+        color-mix(in srgb, var(--evo-bg-mid) 88%, transparent),
+        color-mix(in srgb, var(--evo-bg-right) 82%, transparent)
+    );
+    border-bottom-color: color-mix(in srgb, var(--evo-text-accent) 28%, transparent);
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.navbar .logo,
+.navbar .nav-link {
+    color: var(--evo-text-main);
+    transition: color 0.4s ease;
+}
+
+.navbar .hamburger span {
+    background-color: var(--evo-text-main);
+    transition: background-color 0.4s ease;
+}
+
+.navbar .logo-dot,
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--evo-text-accent);
+}
+
+.navbar .nav-link::after {
+    background: var(--evo-text-accent);
+}
+
+/* Keep every content section legible as the industrial palette evolves. */
+.about-text p,
+.skill-category li,
+.stat-label,
+.job-title,
+.job-description li,
+.project-description,
+.cert-date,
+.contact-info p,
+.contact-form label,
+.footer-brand p,
+.footer-links a {
+    color: var(--evo-text-muted);
+}
+
+.about-text .lead-text,
+.stat-number,
+.skill-category h3,
+.job-tags .tag,
+.project-tags .tag,
+.project-links a,
+.contact-info h3,
+.contact-info a {
+    color: var(--evo-text-accent);
+}
+
+.about-text,
+.skill-category,
+.stat-card,
+.timeline-content,
+.project-content,
+.cert-content,
+.contact-info,
+.contact-form {
+    transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
 }

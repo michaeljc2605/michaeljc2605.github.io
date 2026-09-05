@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael - Cybersecurity & Software Engineer</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=industrial-world-v12">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -35,12 +35,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="grid-overlay"></div>
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+    <section id="home" class="hero evolution-hero">
+        <div class="hero-background evolution-background" aria-hidden="true">
+            <div class="evolution-atmosphere"></div>
+            <div class="evolution-factory"></div>
+            <div class="evolution-grid"></div>
+            <div class="evolution-galaxy"></div>
+            <canvas class="evolution-canvas"></canvas>
+            <div class="evolution-vignette"></div>
+            <div class="evolution-progress" role="presentation">
+                <span class="evolution-progress-label">EVOLUTION</span>
+                <span class="evolution-progress-stage" aria-hidden="true"></span>
+                <span class="evolution-progress-line"><span></span></span>
+            </div>
         </div>
         
         <div class="hero-content">
@@ -73,24 +80,13 @@
                 </div>
             </div>
             
-            <div class="hero-image-container">
-                <div class="image-frame">
-                    <div class="image-decoration"></div>
-                    <!-- REPLACE WITH YOUR IMAGE -->
-                    <img src="/Static/Profile.JPG" alt="Michael" class="hero-image">
-                    <div class="image-overlay"></div>
-                </div>
-                <div class="floating-badge badge-1">
-                    <span class="badge-icon">🔒</span>
-                    <span>Security</span>
-                </div>
-                <div class="floating-badge badge-2">
-                    <span class="badge-icon">💻</span>
-                    <span>Code</span>
-                </div>
-                <div class="floating-badge badge-3">
-                    <span class="badge-icon">🎨</span>
-                    <span>Design</span>
+            <div class="hero-visual-composition">
+                <div class="hero-image-container">
+                    <div class="image-frame">
+                        <div class="image-decoration"></div>
+                        <img src="/Static/Profile.JPG" alt="Michael" class="hero-image">
+                        <div class="image-overlay"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -187,11 +183,45 @@
             </div>
             
             <div class="timeline">
+                <!-- Experience Item 0 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2026 - Present</div>
+                        <div class="company-card">
+                            <div class="company-header">
+                                <div class="company-logo company-logo--monee">
+                                    <img src="/Static/monee-logo.png" alt="Monee">
+                                </div>
+                                <div>
+                                    <h3 class="company-name">
+                                      <a href="https://www.sea.com/products/monee" target="_blank" rel="noopener noreferrer">Monee</a>
+                                    </h3>
+                                    <p class="job-title">AI Tools Development Intern, IT Compliance · Singapore</p>
+                                </div>
+                            </div>
+                            <ul class="job-description job-bullets">
+                                <li>Develop an in-house GRC platform that automates Information Provided by the Entity (IPE) review across approximately 62,000 files and validates source values at department-wide scale.</li>
+                                <li>Designed a four-worker LangGraph pipeline that extracts files, writes structured JSON to accelerate processing, verifies file readiness, generates control rules, and validates them across 10+ control types.</li>
+                                <li>Optimized audit review-log inspection by developing a low-memory OOXML/XML extractor, cutting XLSX processing time from over 5 minutes to under 10 seconds.</li>
+                            </ul>
+                            <div class="job-tags">
+                                <span class="tag">LangGraph</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">GRC</span>
+                                <span class="tag">IT Compliance</span>
+                                <span class="tag">OOXML/XML</span>
+                                <span class="tag">JSON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Experience Item 1 -->
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Nov 2025 - Present</div>
+                        <div class="timeline-date">Nov 2025 - Apr 2026</div>
                         <div class="company-card">
                             <div class="company-header">
                                 <div class="company-logo">
@@ -514,6 +544,53 @@
                     </div>
                 </div>
 
+                <!-- Project 6 -->
+                <div class="project-card project-card--disney">
+                    <div class="project-image">
+                        <picture>
+                            <source srcset="/Static/disney-project-preview.webp" type="image/webp">
+                            <img src="/Static/disney-project-preview.png" alt="Disney One Castle. Many Realms. homepage concept">
+                        </picture>
+                        <div class="project-overlay">
+                            <a href="disney-project.html" class="project-link" aria-label="Open Disney HTML design project">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 4 20.5304 4 20V8C4 7.46957 4.46957 7 5 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 3H21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">HTML Design Project — Disney</h3>
+                        <p class="project-description">
+                            An independent homepage concept that turns Disney’s worlds into one continuous visual journey. Explore the moodboard, layered Photoshop direction, and working multi-realm HTML experience.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Photoshop</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="disney-project.html#materials" class="project-github">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                    <path d="M5 2.5H13L16 5.5V17.5H5V2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <path d="M13 2.5V5.5H16M7.5 9H13.5M7.5 12H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <span>Case Study</span>
+                            </a>
+                            <a href="http://localhost:5176/" target="_blank" rel="noopener noreferrer" class="project-demo">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                    <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <span>HTML Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ADD MORE PROJECTS AS NEEDED -->
             </div>
         </div>
@@ -786,6 +863,6 @@
         })();
     </script>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=industrial-world-v12"></script>
 </body>
 </html>
