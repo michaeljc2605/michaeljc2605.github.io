@@ -1,3 +1,49 @@
+// Full descriptions stay in the HTML for readers, search engines and no-JS clients.
+// Only descriptions longer than the preview receive a disclosure button.
+(() => {
+    const descriptions = document.querySelectorAll('[data-expandable], .job-description, .project-description');
+    const disclosures = Array.from(descriptions, (content, index) => {
+        content.classList.add('expandable-copy');
+        content.id ||= `description-${index + 1}`;
+        const label = content.dataset.expandable || content.closest('.company-card, .project-card')
+            ?.querySelector('h3')?.textContent.trim() || 'description';
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'read-more';
+        button.setAttribute('aria-controls', content.id);
+        button.hidden = true;
+        content.after(button);
+        let expanded = false;
+        const update = () => {
+            const lineHeight = parseFloat(getComputedStyle(content).lineHeight);
+            const previewHeight = lineHeight * (window.innerWidth <= 768 ? 4 : 5);
+            content.style.setProperty('--preview-height', `${previewHeight}px`);
+            content.classList.remove('is-collapsed');
+            const overflows = content.scrollHeight > previewHeight + 2;
+            button.hidden = !overflows;
+            content.classList.toggle('is-collapsed', overflows && !expanded);
+            button.textContent = expanded ? 'Read less' : 'Read more';
+            button.setAttribute('aria-expanded', String(expanded));
+            button.setAttribute('aria-label', `${button.textContent}: ${label}`);
+        };
+        button.addEventListener('click', () => {
+            expanded = !expanded;
+            update();
+            if (!expanded && button.getBoundingClientRect().top < 80) {
+                content.scrollIntoView({ block: 'start', behavior: 'instant' });
+            }
+        });
+        update();
+        return update;
+    });
+    let resizeFrame;
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(() => disclosures.forEach(update => update()));
+    });
+    document.fonts?.ready.then(() => disclosures.forEach(update => update()));
+})();
+
 // ===========================
 // CUSTOM CURSOR
 // ===========================
@@ -30,7 +76,7 @@ function animateCursor() {
     requestAnimationFrame(animateCursor);
 }
 
-animateCursor();
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) animateCursor();
 
 // Enlarge cursor on hover
 const hoverElements = document.querySelectorAll('a, button, .project-card, .stat-card, .company-card');
@@ -73,17 +119,32 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+const mobileNavigation = window.matchMedia('(max-width: 968px)');
+function setNavigationOpen(open) {
+    hamburger.classList.toggle('active', open);
+    navMenu.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    navMenu.inert = mobileNavigation.matches && !open;
+}
+setNavigationOpen(false);
+mobileNavigation.addEventListener('change', () => setNavigationOpen(false));
+
 // Mobile menu toggle
 hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
+    setNavigationOpen(hamburger.getAttribute('aria-expanded') !== 'true');
+});
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
+        setNavigationOpen(false);
+        hamburger.focus();
+    }
 });
 
 // Close mobile menu on link click
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+        setNavigationOpen(false);
     });
 });
 
@@ -102,8 +163,10 @@ navLinks.forEach(link => {
             
             window.scrollTo({
                 top: offsetTop,
-                behavior: 'smooth'
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
             });
+            targetSection.setAttribute('tabindex', '-1');
+            targetSection.focus({ preventScroll: true });
         }
     });
 });
@@ -781,30 +844,6 @@ function debounce(func, wait = 10) {
 window.addEventListener('scroll', debounce(() => {
     highlightNavLink();
 }, 10));
-
-// ===========================
-// PRELOAD CRITICAL IMAGES
-// ===========================
-function preloadImages() {
-    const images = [
-        '/Static/Profile.JPG',
-        '/Static/sbm-logo.png',
-        '/Static/a4c-logo.png',
-        '/Static/keyi-logo.png',
-        '/Static/project1.png',
-        '/Static/project2.png',
-        '/Static/project3.png',
-        '/Static/disney-project-preview.webp',
-        '/Static/disney-project-preview.png'
-    ];
-    
-    images.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
-}
-
-window.addEventListener('load', preloadImages);
 
 // ===========================
 // PRINT FRIENDLY

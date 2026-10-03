@@ -288,6 +288,12 @@ ul {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    border: 0;
+    background: transparent;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
 }
 
 .hamburger span {
@@ -465,6 +471,8 @@ ul {
 .evolution-hero > .hero-content {
     position: relative;
     z-index: 3;
+    max-width: 1120px;
+    margin-inline: auto;
     min-height: 100vh;
     padding: 100px 0 60px;
 }
@@ -528,15 +536,15 @@ ul {
 }
 
 /* The evolving industrial world remains visible behind every portfolio section. */
-body > section:not(.evolution-hero),
+main > section:not(.evolution-hero),
 body > footer {
     position: relative;
     z-index: 1;
     background: rgba(10, 14, 39, 0.78);
 }
 
-body > section:nth-of-type(3),
-body > section:nth-of-type(5) {
+main > section:nth-of-type(3),
+main > section:nth-of-type(5) {
     background: rgba(21, 25, 50, 0.72);
 }
 
@@ -1258,7 +1266,7 @@ body > section:nth-of-type(5) {
 }
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
     gap: 40px;
 }
 .project-card {
@@ -1388,7 +1396,7 @@ body > section:nth-of-type(5) {
 
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 30px;
 }
 
@@ -1735,7 +1743,7 @@ body > section:nth-of-type(5) {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 968px) {
     .container {
         padding: 0 20px;
     }
@@ -1791,7 +1799,7 @@ body > section:nth-of-type(5) {
 }
 
 /* Final cascade: let the global evolution scene breathe through every page section. */
-body > section:not(.evolution-hero) {
+main > section:not(.evolution-hero) {
     background: rgba(10, 11, 18, 0.68) !important;
 }
 
@@ -1868,4 +1876,171 @@ body > footer {
 .contact-info,
 .contact-form {
     transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Readable content, compact phone layouts and progressive disclosures. */
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 10001;
+    padding: 12px 18px;
+    background: #fff;
+    color: #111;
+    transform: translateY(-180%);
+}
+.skip-link:focus { transform: translateY(0); }
+:focus-visible { outline: 2px solid var(--evo-text-accent); outline-offset: 5px; }
+main:focus { outline: none; }
+.hero-title { font-size: clamp(48px, 6.6vw, 88px); letter-spacing: 3px; }
+.hero-title span { display: block; }
+.hero-content > *, .about-content > *, .contact-content > *,
+.company-header > *, .contact-method > * { min-width: 0; }
+.profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-top: 18px;
+    color: var(--evo-text-main);
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.about-description { font-size: 16px; line-height: 1.6; }
+.about-description p { font-size: inherit; line-height: inherit; }
+.expandable-copy { scroll-margin-top: 100px; }
+.expandable-copy.is-collapsed { max-height: var(--preview-height); overflow: hidden; }
+.expandable-copy:has(+ .read-more:not([hidden])) { margin-bottom: 0; }
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 0;
+    margin: 4px 0 14px;
+    border: 0;
+    background: none;
+    color: var(--evo-text-accent);
+    font: 700 13px 'Space Mono', monospace;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+}
+.read-more[hidden] { display: none; }
+.hero-cta, .project-links { flex-wrap: wrap; }
+.company-logo, .contact-icon { flex-shrink: 0; }
+.company-name, .project-title, .contact-value { overflow-wrap: anywhere; }
+.job-bullets { list-style: disc; }
+.project-card:focus-within .project-overlay,
+.cert-card:focus-within .cert-overlay { opacity: 1; }
+.nav-menu { gap: clamp(18px, 2.5vw, 40px); }
+
+@media (max-width: 968px) {
+    .nav-container { padding: 12px 20px; }
+    .navbar .logo { font-size: 30px; }
+    .nav-menu { top: 72px; gap: 10px; padding: 20px; visibility: hidden; }
+    .nav-menu.active { visibility: visible; }
+    .nav-link { display: flex; align-items: center; min-height: 44px; }
+    .hero-subtitle { justify-content: center; }
+    .hero-visual-composition .image-frame { max-width: 320px; }
+}
+
+@media (max-width: 768px) {
+    :root { --section-padding: 56px 0; }
+    body { font-size: 13px; }
+    .container { padding: 0 18px; }
+    .evolution-hero { padding: 0 18px; min-height: auto; }
+    .evolution-hero > .hero-content { min-height: auto; padding: 98px 0 48px; gap: 28px; }
+    .hero-visual-composition { min-height: auto; }
+    .hero-visual-composition .image-frame { max-width: 230px; }
+    .image-decoration { top: -10px; left: -10px; border-width: 2px; }
+    .hero-title { font-size: clamp(34px, 9.5vw, 44px); letter-spacing: 2px; line-height: 1.05; }
+    .glitch-wrapper { margin-bottom: 16px; }
+    .hero-subtitle { font-size: 12px; line-height: 1.6; gap: 4px 8px; }
+    .hero-subtitle-wrapper { margin-bottom: 16px; }
+    .hero-description { font-size: 13px; line-height: 1.7; margin-bottom: 22px; }
+    .hero-cta { gap: 12px; }
+    .btn { min-height: 38px; padding: 8px 12px; font-size: 10px; letter-spacing: .4px; gap: 6px; overflow: visible; }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-secondary { border-width: 1px; }
+    /* Compact visible controls retain a larger touch target. */
+    .btn::after, .read-more::after, .cert-download-btn::after {
+        content: ''; position: absolute; inset: -3px 0;
+    }
+    .hamburger span { width: 20px; }
+    .profile-link { font-size: 11px; margin-top: 12px; }
+    .section-header { gap: 12px; margin-bottom: 28px; }
+    .section-title { font-size: 28px; letter-spacing: 2px; line-height: 1.2; }
+    .section-number { font-size: 11px; }
+    .about-content { gap: 28px; }
+    .about-description, .about-text p, .job-description, .project-description,
+    .contact-info p { font-size: 13px; line-height: 1.7; }
+    .about-text p { margin-bottom: 16px; }
+    .about-text .lead-text { font-size: 14px; line-height: 1.58; }
+    .skills-grid { margin-top: 24px; gap: 24px; }
+    .skill-category h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 10px; }
+    .skill-category li { font-size: 12px; padding-left: 16px; }
+    .about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .stat-card { padding: 18px 12px; }
+    .stat-number { font-size: 32px; }
+    .stat-label { font-size: 10px; letter-spacing: .5px; margin-top: 4px; }
+    .timeline { padding-left: 18px; }
+    .timeline-marker { left: -24px; }
+    .timeline-item { margin-bottom: 28px; }
+    .timeline-date { font-size: 11px; margin-bottom: 10px; }
+    .company-card { padding: 18px; }
+    .company-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .company-logo { width: 44px; height: 44px; }
+    .company-logo--monee { width: 112px; }
+    .company-name, .project-title { font-size: 22px; letter-spacing: 1px; line-height: 1.25; }
+    .job-title { font-size: 12px; line-height: 1.6; margin-top: 6px; }
+    .job-bullets { padding-left: 16px; }
+    .job-bullets li { padding-left: 0; }
+    .job-tags, .project-tags { gap: 6px; }
+    .tag { font-size: 10px; letter-spacing: .3px; padding: 5px 9px; max-width: 100%; overflow-wrap: anywhere; }
+    .projects-grid, .cert-grid { gap: 22px; }
+    .project-content { padding: 18px; }
+    .project-image { aspect-ratio: 16 / 9; }
+    .project-link { width: 44px; height: 44px; }
+    .project-link svg { width: 20px; height: 20px; }
+    .project-title { margin-bottom: 12px; }
+    .project-github, .project-demo { min-height: 44px; font-size: 11px; gap: 6px; }
+    .project-github svg, .project-demo svg { width: 16px; height: 16px; }
+    .project-links { gap: 6px 16px; padding-top: 10px; }
+    .read-more { position: relative; min-height: 38px; font-size: 11px; margin-bottom: 10px; }
+    .cert-content { padding: 16px; }
+    .cert-download-btn { position: relative; min-height: 38px; padding: 8px 12px; font-size: 10px; gap: 6px; }
+    .cert-download-btn svg { width: 15px; height: 15px; }
+    .cert-title { font-size: 19px; letter-spacing: .5px; }
+    .cert-issuer, .cert-date { font-size: 11px; }
+    .contact-content { gap: 32px; }
+    .contact-info h3 { font-size: 26px; }
+    .contact-method { padding: 14px; gap: 12px; }
+    .contact-icon { width: 36px; height: 36px; }
+    .contact-value { font-size: 12px; }
+    .contact-label { font-size: 10px; }
+    .form-group label { font-size: 12px; }
+    /* Keep editable fields at 16px to avoid automatic focus zoom in iOS Safari. */
+    .form-group input, .form-group textarea { font-size: 16px; padding: 12px; }
+    .footer { padding: 40px 0 24px; }
+    .footer-content { gap: 28px; }
+    .footer-brand p, .footer-links a, .footer-bottom { font-size: 12px; }
+    .footer-section h4 { font-size: 18px; }
+    .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+    .footer-links { gap: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (hover: none) {
+    .company-card:hover, .contact-method:hover, .project-card:hover { transform: none !important; }
+    .cert-overlay { opacity: 1; background: transparent; align-items: flex-end; padding: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media print {
+    .expandable-copy.is-collapsed { max-height: none; overflow: visible; }
+    .read-more, .navbar, .evolution-background, .cursor-dot, .cursor-outline { display: none; }
 }
