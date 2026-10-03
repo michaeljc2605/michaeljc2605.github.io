@@ -1963,6 +1963,7 @@ main:focus { outline: none; }
     .btn { min-height: 38px; padding: 8px 12px; font-size: 10px; letter-spacing: .4px; gap: 6px; overflow: visible; }
     .btn svg { width: 16px; height: 16px; }
     .btn-secondary { border-width: 1px; }
+    .btn::before { display: none; }
     /* Compact visible controls retain a larger touch target. */
     .btn::after, .read-more::after, .cert-download-btn::after {
         content: ''; position: absolute; inset: -3px 0;
